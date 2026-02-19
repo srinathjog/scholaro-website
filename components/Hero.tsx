@@ -1,74 +1,95 @@
 
 import React, { useState } from 'react';
-import { ChevronRight, Play } from 'lucide-react';
+import { ChevronRight, Play, Star, CheckCircle } from 'lucide-react';
 import VideoModal from './VideoModal';
 
 const Hero: React.FC = () => {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
-
-  // You can replace this ID with your actual YouTube video ID
   const EXPLINER_VIDEO_URL = "https://www.youtube.com/embed/ScMzIvxBSi4";
 
   return (
-    <section id="home" className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden">
-      {/* Background Decorative Elements */}
-      <div className="absolute top-0 right-0 -z-10 w-1/2 h-full bg-gradient-to-l from-blue-50 to-transparent opacity-50 blur-3xl"></div>
-      <div className="absolute bottom-0 left-0 -z-10 w-1/3 h-1/2 bg-gradient-to-tr from-emerald-50 to-transparent opacity-50 blur-3xl"></div>
+    <section id="home" className="relative pt-32 pb-20 md:pt-52 md:pb-36 overflow-hidden">
+      {/* Dynamic Background Glows */}
+      <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-400/20 blur-[120px] rounded-full animate-pulse"></div>
+      <div className="absolute bottom-[10%] right-[-5%] w-[30%] h-[30%] bg-emerald-400/20 blur-[120px] rounded-full"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-4xl mx-auto mb-16">
-          <h1 className="text-5xl md:text-7xl font-extrabold text-slate-900 leading-[1.1] mb-6 animate-fade-in">
-            Smart School Management <br />
-            <span className="gradient-text">Made Simple</span>
-          </h1>
-          <p className="text-lg md:text-xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed">
-            Scholaro is the complete cloud-based ERP solution that automates daily operations, 
-            enhances teaching productivity, and bridges the gap between parents and schools.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a 
-              href="https://demo.scholaro.co" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto px-8 py-4 bg-blue-600 text-white rounded-full font-bold text-lg hover:bg-blue-700 transition-all shadow-xl hover:-translate-y-1 flex items-center justify-center"
-            >
-              View Live Demo <ChevronRight size={20} className="ml-2" />
-            </a>
-            <button 
-              onClick={() => setIsVideoOpen(true)}
-              className="w-full sm:w-auto px-8 py-4 bg-white text-slate-900 border border-slate-200 rounded-full font-bold text-lg hover:bg-slate-50 transition-all flex items-center justify-center"
-            >
-              <Play size={18} className="mr-2 fill-blue-600 text-blue-600" /> Watch Video
-            </button>
-          </div>
-        </div>
+        <div className="flex flex-col lg:flex-row items-center gap-16">
+          <div className="lg:w-1/2 text-left space-y-8">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-700 rounded-full text-sm font-bold border border-blue-100/50 shadow-sm">
+              <Star size={16} className="fill-blue-600" />
+              <span>Ranked #1 School ERP 2024</span>
+            </div>
+            
+            <h1 className="text-5xl md:text-7xl font-extrabold text-slate-900 leading-[1.05]">
+              Education <br />
+              <span className="gradient-text">Management</span> <br />
+              Reimagined.
+            </h1>
+            
+            <p className="text-xl text-slate-600 max-w-xl leading-relaxed">
+              Experience the next generation of school administration. Automate, engage, and grow with the most intuitive cloud platform ever built.
+            </p>
 
-        <div className="relative mx-auto max-w-5xl group">
-          <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-emerald-500 rounded-[2rem] blur opacity-25 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
-          <div className="relative bg-white rounded-3xl overflow-hidden shadow-2xl border border-slate-100">
-            <img 
-              src="https://picsum.photos/id/20/1200/675" 
-              alt="Scholaro Dashboard Mockup" 
-              className="w-full h-auto object-cover opacity-90 group-hover:opacity-100 transition-opacity"
-            />
-            {/* Mockup Overlay Elements */}
-            <div className="absolute top-8 left-8 bg-white/90 backdrop-blur p-4 rounded-xl shadow-lg border border-white/20 hidden md:block">
-              <div className="flex items-center space-x-3 mb-2">
-                <div className="w-3 h-3 rounded-full bg-emerald-500"></div>
-                <span className="text-sm font-semibold">Active Students: 1,280</span>
+            <div className="flex flex-col sm:flex-row items-center gap-5">
+              <a 
+                href="https://demo.scholaro.co" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto px-10 py-5 bg-slate-900 text-white rounded-2xl font-bold text-xl hover:bg-black transition-all shadow-2xl hover:-translate-y-1 flex items-center justify-center group"
+              >
+                View Live Demo <ChevronRight size={22} className="ml-2 group-hover:translate-x-1 transition-transform" />
+              </a>
+              <button 
+                onClick={() => setIsVideoOpen(true)}
+                className="w-full sm:w-auto px-10 py-5 bg-white text-slate-900 border border-slate-200 rounded-2xl font-bold text-xl hover:border-blue-300 transition-all flex items-center justify-center shadow-lg"
+              >
+                <Play size={20} className="mr-3 fill-blue-600 text-blue-600" /> Watch Video
+              </button>
+            </div>
+
+            <div className="flex items-center gap-8 pt-4">
+              <div className="flex -space-x-3">
+                {[1, 2, 3, 4].map(i => (
+                  <img key={i} className="w-10 h-10 rounded-full border-2 border-white" src={`https://i.pravatar.cc/100?img=${i+10}`} alt="user" />
+                ))}
+                <div className="w-10 h-10 rounded-full border-2 border-white bg-blue-600 flex items-center justify-center text-white text-xs font-bold">+500</div>
               </div>
-              <div className="w-32 h-2 bg-slate-200 rounded-full overflow-hidden">
-                <div className="w-3/4 h-full bg-emerald-500"></div>
+              <div className="text-sm text-slate-500 font-medium">
+                <span className="text-slate-900 font-bold">Trusted by 500+</span> <br /> Schools Globally
               </div>
             </div>
-            <div className="absolute bottom-8 right-8 bg-white/90 backdrop-blur p-4 rounded-xl shadow-lg border border-white/20 hidden md:block">
-              <div className="flex items-center space-x-3">
-                <div className="bg-blue-100 p-2 rounded-lg">
-                  <BarChart3 size={20} className="text-blue-600" />
+          </div>
+
+          <div className="lg:w-1/2 relative">
+            <div className="relative z-10 floating">
+              <div className="bg-white p-3 rounded-[2.5rem] shadow-2xl border border-white/50">
+                <img 
+                  src="https://picsum.photos/id/20/1200/800" 
+                  alt="Scholaro Premium" 
+                  className="rounded-[2rem] shadow-inner"
+                />
+              </div>
+              
+              {/* Floating Fancy Widgets */}
+              <div className="absolute -top-10 -left-10 glass-card p-5 rounded-3xl shadow-2xl max-w-[200px] border-l-4 border-l-blue-500 hidden xl:block animate-bounce-slow">
+                <div className="text-xs font-bold text-blue-600 uppercase mb-2">Real-time Stats</div>
+                <div className="text-2xl font-black text-slate-900">98.4%</div>
+                <div className="text-[10px] text-slate-500 font-medium">Daily Attendance Rate</div>
+              </div>
+
+              <div className="absolute -bottom-12 -right-12 glass-card p-6 rounded-3xl shadow-2xl hidden xl:block">
+                <div className="flex items-center gap-4 mb-3">
+                  <div className="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600">
+                    <CheckCircle size={20} />
+                  </div>
+                  <div>
+                    <div className="text-sm font-bold text-slate-900">Fees Collected</div>
+                    <div className="text-xs text-slate-500">Processing Success</div>
+                  </div>
                 </div>
-                <div>
-                  <div className="text-xs text-slate-500 font-medium uppercase tracking-wider">Fee Collection</div>
-                  <div className="text-lg font-bold text-slate-900">$42,500.00</div>
+                <div className="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
+                  <div className="h-full bg-emerald-500 w-[85%]"></div>
                 </div>
               </div>
             </div>
@@ -76,7 +97,6 @@ const Hero: React.FC = () => {
         </div>
       </div>
 
-      {/* Video Modal Component */}
       <VideoModal 
         isOpen={isVideoOpen} 
         onClose={() => setIsVideoOpen(false)} 
@@ -85,12 +105,5 @@ const Hero: React.FC = () => {
     </section>
   );
 };
-
-// Simple icon for internal use
-const BarChart3 = ({size, className}: {size: number, className: string}) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/>
-  </svg>
-);
 
 export default Hero;

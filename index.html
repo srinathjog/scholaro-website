@@ -4,28 +4,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <title>Scholaro | Smart School Management Made Simple</title>
+    <title>Scholaro | The Future of School Management</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 100 100' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M25 30C25 18.9543 33.9543 10 45 10H75V40C75 51.0457 66.0457 60 55 60H25V30Z' fill='%233b82f6' /%3E%3Cpath d='M75 70C75 81.0457 66.0457 90 55 90H25V60C25 48.9543 33.9543 40 45 40H75V70Z' fill='%2310b981' /%3E%3Ccircle cx='50' cy='50' r='10' fill='white' /%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
         }
         .gradient-text {
-            background: linear-gradient(135deg, #2563eb 0%, #10b981 100%);
+            background: linear-gradient(135deg, #3b82f6 0%, #10b981 50%, #6366f1 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: textGradient 4s linear infinite;
+        }
+        @keyframes textGradient {
+            to { background-position: 200% center; }
+        }
+        .mesh-bg {
+            background-color: #f8fafc;
+            background-image: 
+                radial-gradient(at 0% 0%, hsla(221,83%,93%,1) 0, transparent 50%), 
+                radial-gradient(at 50% 0%, hsla(160,84%,92%,1) 0, transparent 50%), 
+                radial-gradient(at 100% 0%, hsla(239,84%,92%,1) 0, transparent 50%);
         }
         .gradient-bg {
-            background: linear-gradient(135deg, #2563eb 0%, #10b981 100%);
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .gradient-bg::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(59, 130, 246, 0.15) 0%, transparent 50%);
+            pointer-events: none;
         }
         .glass-card {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+        }
+        .fancy-border {
+            position: relative;
+            background: white;
+            border-radius: 24px;
+        }
+        .fancy-border::before {
+            content: "";
+            position: absolute;
+            inset: -1px;
+            background: linear-gradient(135deg, #3b82f6, #10b981, #6366f1);
+            border-radius: 25px;
+            z-index: -1;
+            opacity: 0.3;
+            transition: opacity 0.3s ease;
+        }
+        .fancy-border:hover::before {
+            opacity: 1;
+        }
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        .scroll-progress {
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #10b981);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            transition: width 0.1s;
+        }
+        @keyframes zoom-in {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .animate-zoom-in {
+            animation: zoom-in 0.3s ease-out forwards;
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
     </style>
 <script type="importmap">
@@ -40,8 +115,17 @@
 </script>
 <link rel="stylesheet" href="/index.css">
 </head>
-<body class="bg-slate-50 text-slate-900">
+<body class="mesh-bg text-slate-900">
+    <div class="scroll-progress" id="progress-bar"></div>
     <div id="root"></div>
+    <script>
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("progress-bar").style.width = scrolled + "%";
+        };
+    </script>
 <script type="module" src="/index.tsx"></script>
 </body>
 </html>

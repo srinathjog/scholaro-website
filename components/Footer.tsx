@@ -1,7 +1,8 @@
 
 import React from 'react';
-import { School, Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
+import { Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
 import { NAV_LINKS } from '../constants';
+import Logo from './Logo';
 
 const Footer: React.FC = () => {
   return (
@@ -9,12 +10,7 @@ const Footer: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           <div className="space-y-6">
-            <div className="flex items-center space-x-2">
-              <div className="bg-blue-600 p-2 rounded-lg text-white">
-                <School size={24} />
-              </div>
-              <span className="text-2xl font-bold tracking-tight text-slate-900">Scholaro</span>
-            </div>
+            <Logo />
             <p className="text-slate-600 leading-relaxed">
               Empowering schools with smart, cloud-based ERP solutions to streamline administration and foster better educational outcomes.
             </p>
